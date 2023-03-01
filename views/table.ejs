@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script>
+      const doEdit = (id) =>{
+          location = '/edit/'+id;
+      };
+
+      // const doDelete = async(id)=>{
+      //     const response = await fetch('/api/customer', {
+      //         method: 'DELETE',
+      //         headers: {
+      //             'Content-Type': 'application/json',
+      //         },
+      //         body: JSON.stringify({id}),//destructure
+      //         })
+      //         .then((response) => response.json())
+      //         .then((data) => {
+      //             //console.log('Success:', data);
+      //             return data;
+      //         })
+      //         .catch((error) => {
+      //             console.error('Error:', error);
+      //         });
+          
+      //     console.log('response:', response);
+      //     if(response.result == "ok"){
+      //         location = "/customer"
+      //     }
+      // }
+      </script>
+    <h1><%= title %></h1>
+
+    <div class="page-data">
+        <div class="data-table">
+           <table border="1" cellpadding="7" cellspacing="7">
+               <tr>
+                   <th width="20px">No</th>
+                   <th width="250px">Name</th>
+                   <th width="220px">Surname</th>
+                   <th width="100px">Age</th>
+				           <th width="100px">ID</th>
+                   <th width="300px">Mounth</th>
+                   <th width="300px">Year</th>
+                   <th width="300px">Prescreption</th>
+                   <th width="300px">Drugs</th>
+                   
+               </tr>
+               <% if(data.length){for(var i = 0;i < data.length;i++) { %>       
+               <tr>
+                   <td><%=data[i]._id%></td>
+                   <td><%=data[i].name%></td>
+                   <td><%=data[i].surname%></td>
+                   <td><%=data[i].age%></td>
+				           <td><%=data[i].ID%></td>
+                   <td><%=data[i].mounth%></td>
+                   <td><%=data[i].year%></td>
+                   <td><%=data[i].prescreption%></td>
+                   <td><%=data[i].drugs%></td>
+                   <td><button onclick="doEdit('<%=data[i]._id%>');" >Edit</button></td>
+                   <td><button onclick="doDelete('<%=data[i]._id %>');">Delete</button></td>
+               </tr>
+           <% }
+            }else{ %>
+                <tr>
+                   <td colspan="7">No order found</td>
+                </tr>
+           <% } %> 
+           </table>
+        </div>
+       </div>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script>
+      let doAdd = () => {
+      // let id = document.getElementById('id').value;
+      let name = document.getElementById('name').value;
+      let surname = document.getElementById('surname').value;
+      let age = document.getElementById('age').value;
+      let ID = document.getElementById('ID').value;
+      let mounth = document.getElementById('mounth').value;
+      let year = document.getElementById('year').value;
+      let prescreption = document.getElementById('prescreption').value;
+      let drugs = document.getElementById('drugs').value;
+      let data = { name, surname, age, ID, mounth, year, prescreption, drugs };
+      let response = fetch('/api/v1/hosp', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+        location = '/';
+      }
+
+      const doSearch = function(){
+        let searchText = document.getElementById("searchText").value;
+        let selectField = document.getElementById("select").value;
+        if(searchText == ""){
+          location = "/table";
+        }else{
+          location = "/search/"+selectField+"/"+searchText;
+        }
+      }
+    </script>
+    <header>
+      <div id="looger-div">
+        <span id="display-user"><%= user %></span>
+        <input id="btn" type="button" value="Log Out" onclick="doLogout()">
+      </div>
+    </header>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div id="container">
+      <div id="cont">
+        <p>Hospital module</p>
+      </div>
+      <input id="name" placeholder="Name" value=""><br><br>
+      <input id="surname" placeholder="Surname" value=""><br><br>
+      <input id="age" placeholder="Age" value=""><br><br>
+      <input id="ID" placeholder="ID" value=""><br><br>
+      <input id="mounth" placeholder="Mounth" value=""><br><br>
+      <input id="year" placeholder="Year" value=""><br><br>
+      <textarea id="prescreption" placeholder="Prescreption"></textarea><br><br>
+      <textarea id="drugs" placeholder="Drugs"></textarea><br><br>
+      <input id="btn" type="button" value="Send" onclick="doAdd()">
+      <input id="btn" type="button" value="Cancel" onclick="location='/'">
+    </div><br>
+
+    <div id="search-container">
+      <input id="btn" type="button" value="Reload" onclick="location='/'"><br><br>
+      <div id="search-header">
+        <p>Search module</p>
+      </div>
+        <input id="searchText" type="text" name="" placeholder="search text"> 
+        <select id="select">
+          <option value="name">Name</option>
+          <option value="surname">Surname</option>
+          <option value="age">Age</option>
+          <option value="ID">ID</option>
+          <option value="mounth">Mounth</option>
+          <option value="year">Year</option>
+          <option value="prescreption">Prescreption</option>
+          <option value="drugs">Drugs</option>
+        </select>
+        <button onclick="doSearch()">Search</button><br/><br/>
+      
+    
+    </div>
+    
+    <%- include table.ejs %>
+
+  </body>
+</html>

@@ -1,0 +1,13 @@
+## App owner
+- Giorgi Kavtadze
+## About app
+- THE APP IS UNDER CONSTRUCTION !!!
+- App is about Hospital and pharmacy relations;
+- App uses node js enviroment, mongodb, mongoose, ORM, express-session, ejs framework
+- App uses get response and post response
+- This app is main app which links to https://github.com/kavtaraG/client
+## How to run app
+- setup project: 
+	1) cd test
+	2) npm i 
+	3) nodemon

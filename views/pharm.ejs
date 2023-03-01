@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		const doSearch = function(){
+        var searchText = document.getElementById("searchText").value;
+        var select = document.getElementById("select").value;
+        // if(searchText == ""){
+        //   location = "/pharmacy";
+        // }else{
+        //   location = "/search/"+select+"/"+searchText;
+        // }
+
+		if(searchText == ""){
+				return alert('Search field is empty');
+			}else if(searchText == ""){
+				return location='/pharmacy';
+			}else{
+				return location='/search/'+ select +'/'+ searchText;
+			};
+    };
+	</script>
+	<header>
+		<div id="identifier">
+			<p>Pharmacy store identifier</p>
+		</div>
+		<div id="header-container">
+			<input id="btn" type="button" value="Log out" onclick="location='/login'">
+		</div>
+	</header>
+	<div id="pharmacy-container">
+		<div id="pharm-module">
+			<p>Pharmacy module</p>
+		</div>
+		<input id="searchText" type="text" value="" placeholder="Search items">
+		<select id="select">
+			<option id="ID" value="ID">ID</option>
+		</select>
+		<input id="btn" type="button" value="Search" onclick="doSearch()">
+	</div>
+</body>
+</html>

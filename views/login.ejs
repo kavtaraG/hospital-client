@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let doLogin = () => {
+			let username = document.getElementById('username').value;
+			let password = document.getElementById('password').value;
+			let data = { username, password };
+			let response = fetch('/users/login', {
+				method: 'POST', // or 'PUT'
+				headers: {
+				'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+      			})
+				.then((response) => response.json())
+				.then((data) => {
+					return data;
+					//console.log("Success:", data);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+				let dataUser = ['doc', 'dude'];
+				let arr = dataUser[0];
+				
+				if(username == arr){
+					if(password == '1234'){
+						return location = '/';
+					}else if(password == ''){
+						return alert('Password is emty');
+					}else if(password != '1234'){
+						return alert('Password is incorrect');
+					};
+				}else{
+					return alert('Username or password is empty or incorrect');
+				};
+				};	
+	</script>
+
+	<div id="login-container">
+		
+			
+       
+		<input id="username" type="text" value="" placeholder="Username"><br><br>
+		<input id="password" type="password" value="" placeholder="Password"><br><br>
+		<input id="btn" type="button" value="Login" onclick="doLogin()">
+		<input id="btn" type="button" value="Cencel" onclick="location='/login'">
+	</div>
+	<div id="info">
+		<p>To add account, please contact to IT department</p>
+	</div>
+	
+</body>
+</html>

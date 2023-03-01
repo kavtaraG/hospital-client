@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let doRegister = async () => {
+			let username = document.getElementById('username').value;
+			let password = document.getElementById('password').value;
+			let fullName = document.getElementById('fullname').value;
+			let select = document.getElementById('select').value;
+			let data = { username, password, fullName, select };
+			let response = await fetch("/api/v1/admin", {
+				method: "POST", // or 'PUT'
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					// console.log("Success:", data);
+					return data;
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+
+				location='/admin_table';
+		};
+	</script>
+	<div id="admin-div">
+		<div id="admin-mode">
+			<p>Admin mode</p>
+		</div>
+		<div id="inputs">
+			<input id="username" type="text" value="" placeholder="Username"><br><br>
+			<input id="password" type="text" value="" placeholder="Password"><br><br>
+			<input id="fullname" value="" type="text" placeholder="Full name"><br><br>
+			<select id="select">
+				<option>Select</option>
+				<% for(let i = 0; i < select.length; i ++) { %>
+					<option id="option" type="text" value=""><%= select[i].dep %></option>
+				<% } %>
+			</select><br><br>
+			<input id="btn" type="button" value="Register" onclick="doRegister()">
+			<input id="btn" type="button" value="Cencel" onclick="location='#'">
+		</div>	
+	</div>
+</body>
+</html>

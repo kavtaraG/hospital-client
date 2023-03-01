@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"username": "doc",
+		"password": "1234",
+		"department": ["Traumatology", "Narcology", "Angeologyt", "Cardiology"],
+		"name": "name",
+		"surname": "surname"
+	},
+{"id":2,"username":"dude","password":"1234","department":["Traumatology","Narcology","Angeologyt","Cardiology"],"name":"name","surname":"surname"},
+{"id":3,"username":"ddd","password":"1234","department":["Traumatology","Narcology","Angeologyt","Cardiology"],"name":"name","surname":"surname"}
+]
