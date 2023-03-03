@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const { getMongoData,  getMongoDataBySearch } = require('../controller/app.mongo-hosps');
 const { getData } = require('../controller/app.controller');
-const { getArminData } = require('../controller/app.admin-data');
+//const { getArminData } = require('../controller/app.admin-data');
 const { getAdminData } = require('../controller/app.admin');
 
 let dataJson = JSON.parse(fs.readFileSync(`${__dirname}/../public/data.json`));
@@ -41,12 +41,14 @@ router.get('/table2/:select/:searchText', async function(req, res, next) {
 
 //admin page
 router.get('/admin_page', function(req, res, next) {
-  const data = { };
-  res.render('register-by-admin',{ data, select: dataMap });
+  
+  const enviroments = {};
+  res.render('register-by-admin',{ enviroments, enviroments: dataMap });
 });
 
 router.get('/admin_table', async function(req, res, next) {
   const data = { };
+ 
   res.render('admin-table',{ data: await getAdminData(req.body) });
 });
 

@@ -41,7 +41,7 @@
            <table border="1" cellpadding="7" cellspacing="7">
 			<tr>
 				<th width="20px">No</th>
-				<th width="250px">Username</th>
+				<th width="250px">E-mail</th>
 				<th width="220px">Password</th>
 				<th width="100px">Full Name</th>
 				<th width="100px">Department</th>
@@ -51,10 +51,10 @@
 			<% if(data.length){for(var i = 0;i < data.length;i++) { %>       
 			<tr>
 				<td><%=data[i]._id%></td>
-				<td><%=data[i].username%></td>
+				<td><%=data[i].mail%></td>
 				<td><%=data[i].password%></td>
-				<td><%=data[i].full_name%></td>
-				<td><%=data[i].department%></td>
+				<td><%=data[i].fullname%></td>
+				<td><%=data[i].department %></td>
 				<td><button onclick="doEdit('<%=data[i]._id%>');" >Edit</button></td>
 				<td><button onclick="doDelete('<%=data[i]._id %>');">Delete</button></td>
 			</tr>

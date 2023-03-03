@@ -17,7 +17,7 @@ const getAdminData = function(){
 	  function(err, client) {
 	  assert.equal(null, err);
 	  const db = client.db(dbName);
-		db.collection('hostDepartment').find().toArray(function (err, result) {
+		db.collection('hospDepartment').find().toArray(function (err, result) {
 		  if (err) throw err
 		  //console.log(result);
 		  client.close();
@@ -34,7 +34,7 @@ const getAdminData = function(){
 	  MongoClient.connect(url,{ useNewUrlParser: true,useUnifiedTopology: true }, function(err, client) {
 	  assert.equal(null, err);
 	  const db = client.db(dbName);
-		db.collection('hostDepartment').find({"_id" : ObjectId(id)}).toArray(function (err, result) {
+		db.collection('hospDepartment').find({"_id" : ObjectId(id)}).toArray(function (err, result) {
 		  if (err) throw err
 		  console.log(result);
 		  resolve(result[0]);
