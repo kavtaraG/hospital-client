@@ -58,4 +58,38 @@ const getAdminData = function(){
 	});
   };
 
-module.exports = { getAdminData, getAdminDataById, addAdminData };
+  const authUsersData = function (field, mail, password) {
+	return new Promise((resolve, reject) => {
+		var records = [];
+		// console.log("field:" + field);
+		// console.log("email:" + email);
+  
+		MongoClient.connect(url, {
+			useNewUrlParser: true
+		}, function (err, client) {
+			assert.equal(null, err);
+			const db = client.db(dbName);
+			db.collection('hospDepartment').find({
+				[field]: {
+					'$regex': mail,
+					'$options': 'i'
+				}
+			}).toArray(function (err, result) {
+				if (err) throw err
+				console.log("result:" + JSON.stringify(result));
+				// console.log("==========password:" + result[0]['password']);
+  
+				if ((mail===result[0]['mail']) && (password === result[0]['password'])) {
+					// resolve(1);
+					resolve(result);
+				} else {
+					resolve(0)
+  
+				}
+				client.close();
+			});
+		});
+	});
+  }
+
+module.exports = { getAdminData, getAdminDataById, addAdminData, authUsersData };

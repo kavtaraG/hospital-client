@@ -7,6 +7,7 @@ const { getMongoData, getMongoDataById, addMongoData, updateMongoData, getMongoD
 // 	{"id": 1, "name": "dude", "surname":"due", "age": 23, "mounth": 2, "year": 1990, "prescreption": "sdfdf", "drugs": "dsfsd"}
 // ];
 
+
 app.get('/', async (req, res) => {
 	res.send(await getMongoData(req.body));
 });

@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http');
-const session = require('cookie-session');
+
 const dotenv = require('dotenv');
 
 dotenv.config({path: './config.env'});
@@ -15,6 +15,7 @@ var hospApi = require('./routes/hospApi');
 var usersApi = require('./routes/usersApi');
 var adminApi = require('./routes/adminApi');
 //var sequrePages = require('./routes/secure-pages');
+var session = require('cookie-session');
 
 var app = express();
 
@@ -48,7 +49,7 @@ app.use('/users', usersRouter);
 //   }else{
 //     res.redirect('/login')
 //   }
-// })
+// });
 
 // app.use('/', sequrePages);
 app.use('/api/v1/admin', adminApi);

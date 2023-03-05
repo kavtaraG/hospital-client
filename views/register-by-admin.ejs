@@ -12,7 +12,7 @@
 			let password = document.getElementById('password').value;
 			let fullname = document.getElementById('fullname').value;
 			let department = document.getElementById('department').value;
-			let data = { mail, password, fullname, department };
+			let data = { mail, role: 'user', password, fullname, department };
 			let response = await fetch("/api/v1/admin", {
 				method: "POST", // or 'PUT'
 				headers: {
@@ -41,7 +41,7 @@
 			<input id="password" type="text" value="" placeholder="Password"><br><br>
 			<input id="fullname" value="" type="text" placeholder="Full name"><br><br>
 			<select id="department" type="text">
-				<option></option>
+				<option disabled selected>Department</option>
 				<% enviroments.forEach(function(enviroment){ %>
 					<option><%= enviroment.dep %></option>
 				<% }) %>

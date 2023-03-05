@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+const session = require('cookie-session');
 
 const { getMongoData,  getMongoDataBySearch } = require('../controller/app.mongo-hosps');
 const { getData } = require('../controller/app.controller');
 //const { getArminData } = require('../controller/app.admin-data');
-const { getAdminData } = require('../controller/app.admin');
+const { getAdminData, getAdminDataById, addAdminData } = require('../controller/app.admin');
 
 let dataJson = JSON.parse(fs.readFileSync(`${__dirname}/../public/data.json`));
 let dataMap = dataJson.map((item) => (dataJson, item));
@@ -15,7 +16,30 @@ let dataMap = dataJson.map((item) => (dataJson, item));
 //   res.redirect('/login');
 // });
 
+// const authAdmin = () => {
+//   return (req, res, next) => {
+//     if(res.session.role != 'admin'){
+//       res.status(401);
+//       res.redirect('/admin_pages');
+//       return res.send('Mot allowded');
+//     };
+//     next();
+//   };
+// };
+
+// const authUsers = () => {
+//   return (req, res, next) => {
+//     if(req.session.role != 'user'){
+//       res.status(401);
+//       res.redirect('/login');
+//       return res.send('Not allowded');
+//     };
+//     next();
+//   };
+// };
+
 router.get('/login', function(req, res, next) {
+  delete(req.session.user);
   res.render('login', {  });
 });
 
@@ -49,7 +73,7 @@ router.get('/admin_page', function(req, res, next) {
 router.get('/admin_table', async function(req, res, next) {
   const data = { };
  
-  res.render('admin-table',{ data: await getAdminData(req.body) });
+  res.render('admin-table',{ data, data: await getAdminData(req.body) });
 });
 
 

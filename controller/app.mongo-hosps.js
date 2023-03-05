@@ -1,6 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const ObjectId = require('mongodb').ObjectID;
+const HospsSchema = require('../models/pharmacy');
+const mongoose = require('mongoose');
 
 const dbName = 'pharmdb';
 const url = 'mongodb://localhost:27017';

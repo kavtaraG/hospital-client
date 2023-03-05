@@ -8,9 +8,9 @@
 <body>
 	<script>
 		let doLogin = () => {
-			let username = document.getElementById('username').value;
+			let mail = document.getElementById('mail').value;
 			let password = document.getElementById('password').value;
-			let data = { username, password };
+			let data = { mail, password };
 			let response = fetch('/users/login', {
 				method: 'POST', // or 'PUT'
 				headers: {
@@ -26,19 +26,15 @@
 				.catch((error) => {
 					console.error("Error:", error);
 				});
-				let dataUser = ['doc', 'dude'];
-				let arr = dataUser[0];
-				
-				if(username == arr){
-					if(password == '1234'){
-						return location = '/';
-					}else if(password == ''){
-						return alert('Password is emty');
-					}else if(password != '1234'){
-						return alert('Password is incorrect');
-					};
+
+				if(response.status =='ok'){
+					location='/';
+				}else if(typeof mail == undefined || !mail && 
+						typeof password == undefined || !password ){
+					 return alert('Field are empty');
 				}else{
-					return alert('Username or password is empty or incorrect');
+					//return alert('dinied');
+					return location = '/';
 				};
 				};	
 	</script>
@@ -47,7 +43,7 @@
 		
 			
        
-		<input id="username" type="text" value="" placeholder="Username"><br><br>
+		<input id="mail" type="text" value="" placeholder="E-mail"><br><br>
 		<input id="password" type="password" value="" placeholder="Password"><br><br>
 		<input id="btn" type="button" value="Login" onclick="doLogin()">
 		<input id="btn" type="button" value="Cencel" onclick="location='/login'">
